@@ -30,9 +30,9 @@ int cryptograthy::encryption_text(const str& plain_text, const pix_vec& pixels, 
 	for (int i = 0; i < plain_text.length(); i++)
 	{
 
-		// Ñóììà ïèêñåëåé
+		// Ð¡ÑƒÐ¼Ð¼Ð° Ð¿Ð¸ÐºÑÐµÐ»ÐµÐ¹
 		int pix_sum = pixels[i].r + pixels[i].g + pixels[i].b;
-		// Êîä ñèìâîëà èñõîäíîãî òåêñòà âû÷èòàåì èç ñóììû òð¸õ áàéò ïèêñåëÿ
+		// ÐšÐ¾Ð´ ÑÐ¸Ð¼Ð²Ð¾Ð»Ð° Ð¸ÑÑ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ‚ÐµÐºÑÑ‚Ð° Ð²Ñ‹Ñ‡Ð¸Ñ‚Ð°ÐµÐ¼ Ð¸Ð· ÑÑƒÐ¼Ð¼Ñ‹ Ñ‚Ñ€Ñ‘Ñ… Ð±Ð°Ð¹Ñ‚ Ð¿Ð¸ÐºÑÐµÐ»Ñ
 		if (pix_sum < plain_text[i])
 		{
 			pix_sum += 1000;
@@ -41,9 +41,9 @@ int cryptograthy::encryption_text(const str& plain_text, const pix_vec& pixels, 
 		key.push_back('|');
 
 	}
-	// Óäàëåíèå ñèìâîëà '|' â êîíöå
+	// Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ ÑÐ¸Ð¼Ð²Ð¾Ð»Ð° '|' Ð² ÐºÐ¾Ð½Ñ†Ðµ
 	key.pop_back();
-	// Ïðîñìîòð êëþ÷à
+	// ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ ÐºÐ»ÑŽÑ‡Ð°
 	show_key(key);
 	return 0;
 }
@@ -51,7 +51,7 @@ int cryptograthy::encryption_text(const str& plain_text, const pix_vec& pixels, 
 int cryptograthy::decryption_text(const str& text, const pix_vec& pixels, str& plain_text)
 {
 	uc_vec key;
-	// Ïðîâåðêà íà êîëè÷åñòâî ñèìâîëîâ, îíî äîëæíî áûòü áîëüøå èëè ðàâíî êîëè÷åñòâó ïèêñåëåé
+	// ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ð° ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð², Ð¾Ð½Ð¾ Ð´Ð¾Ð»Ð¶Ð½Ð¾ Ð±Ñ‹Ñ‚ÑŒ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð¸Ð»Ð¸ Ñ€Ð°Ð²Ð½Ð¾ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ñƒ Ð¿Ð¸ÐºÑÐµÐ»ÐµÐ¹
 	if (pixels.size() < plain_text.length())
 	{
 		std::cout << "Not enough pixels for decryption information. Try again in next time." << std::endl << std::endl;
@@ -59,14 +59,14 @@ int cryptograthy::decryption_text(const str& text, const pix_vec& pixels, str& p
 	}
 	for (int i = 0; i < text.length(); i++)
 	{
-		// ×àñòü êëþ÷à (îäèí ñèìâîë, ÷òåíèå äî çíàêà ðàçäåëèòåëÿ - '|')
+		// Ð§Ð°ÑÑ‚ÑŒ ÐºÐ»ÑŽÑ‡Ð° (Ð¾Ð´Ð¸Ð½ ÑÐ¸Ð¼Ð²Ð¾Ð», Ñ‡Ñ‚ÐµÐ½Ð¸Ðµ Ð´Ð¾ Ð·Ð½Ð°ÐºÐ° Ñ€Ð°Ð·Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»Ñ - '|')
 		str part_key = "";
 		while (text[i] != '|' && i < text.length())
 		{
 			part_key += text[i];
 			i++;
 		}
-		// stoi - str to int . Ïðåîáðàçîâàíèå ñòðîêè â ÷èñëî
+		// stoi - str to int . ÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·Ð¾Ð²Ð°Ð½Ð¸Ðµ ÑÑ‚Ñ€Ð¾ÐºÐ¸ Ð² Ñ‡Ð¸ÑÐ»Ð¾
 		key.push_back(std::stoi(part_key));
 	}
 	for (int i = 0; i < key.size(); i++)
@@ -78,7 +78,7 @@ int cryptograthy::decryption_text(const str& text, const pix_vec& pixels, str& p
 		const int pix_sum = pixels[i].r + pixels[i].g + pixels[i].b;
 		plain_text += pix_sum - key[i];
 	}
-	// Ïðîñìîòð ðàñøèôðîâàííîãî òåêñòà
+	// ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ð³Ð¾ Ñ‚ÐµÐºÑÑ‚Ð°
 	show_plain_text(plain_text);
 	return 0;
 }

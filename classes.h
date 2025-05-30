@@ -1,10 +1,10 @@
 #pragma once
 struct Pixel
 {
-	// Столбец (Х)
+	// РЎС‚РѕР»Р±РµС† (РҐ)
 	int column;
-	// Строка (У) 
+	// РЎС‚СЂРѕРєР° (РЈ) 
 	int row;
-	// Цвета
+	// Р¦РІРµС‚Р°
 	unsigned char r = 0, g = 0, b = 0;
 };

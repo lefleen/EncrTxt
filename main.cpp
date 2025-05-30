@@ -19,13 +19,13 @@ void main_get_pixels(work_with_files& file, pix_vec& pixels)
 	error_chunk = chunks.get(IDAT, IHDR, code_file);
 	error_pixel = image.get_pixels(IDAT, IHDR, pixels);
 
-	// ОЛАДОЧНАЯ ИНФОРМАЦИЯ
+	// РћР›РђР”РћР§РќРђРЇ РРќР¤РћР РњРђР¦РРЇ
 	correct_format_pixels.show(pixels);
 	//
 
 	correct_format_pixels.change_format_all_pixels(pixels);
 
-	// ОТЛАДОЧНАЯ ИНФА
+	// РћРўР›РђР”РћР§РќРђРЇ РРќР¤Рђ
 	correct_format_pixels.show(pixels);
 	//
 
@@ -37,7 +37,7 @@ void main_get_pixels(work_with_files& file, pix_vec& pixels)
 
 void encr_final(str& input_text, uc_vec& key, work_with_files& file)
 {
-	// Взаимодейтсвие  с режимами шифрования и дешифрования
+	// Р’Р·Р°РёРјРѕРґРµР№С‚СЃРІРёРµ  СЃ СЂРµР¶РёРјР°РјРё С€РёС„СЂРѕРІР°РЅРёСЏ Рё РґРµС€РёС„СЂРѕРІР°РЅРёСЏ
 	cryptograthy crypto;
 	pix_vec pixels;
 	
@@ -55,7 +55,7 @@ void encr_final(str& input_text, uc_vec& key, work_with_files& file)
 void decr_final(str& input_text, str& plain_text, work_with_files& file)
 {
 	
-	// Взаимодейтсвие с режимами шифрования и дешифрования
+	// Р’Р·Р°РёРјРѕРґРµР№С‚СЃРІРёРµ СЃ СЂРµР¶РёРјР°РјРё С€РёС„СЂРѕРІР°РЅРёСЏ Рё РґРµС€РёС„СЂРѕРІР°РЅРёСЏ
 	cryptograthy crypto;
 	pix_vec pixels;
 	
@@ -73,10 +73,10 @@ void decr_final(str& input_text, str& plain_text, work_with_files& file)
 void main(){
 	system("chcp 1251 > nul");
 
-	// Выбор для продолжения после окончания программы
+	// Р’С‹Р±РѕСЂ РґР»СЏ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ РїРѕСЃР»Рµ РѕРєРѕРЅС‡Р°РЅРёСЏ РїСЂРѕРіСЂР°РјРјС‹
 	int choose_continue = 1;
 
-	// ТЕСТ:
+	// РўР•РЎРў:
 	//
 	//
 	work_with_files file;
@@ -84,13 +84,13 @@ void main(){
 	main_get_pixels(file, pixels);
 	//
 	// 
-	// КОНЕЦ ТЕСТА
+	// РљРћРќР•Р¦ РўР•РЎРўРђ
 
 	/*while (choose_continue == 1)
 	{
-		//Взаимодейтсвие с пользователем
+		//Р’Р·Р°РёРјРѕРґРµР№С‚СЃРІРёРµ СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
 		user_interface ui;
-		// Взаимодейтсвие с файловой системой
+		// Р’Р·Р°РёРјРѕРґРµР№С‚СЃРІРёРµ СЃ С„Р°Р№Р»РѕРІРѕР№ СЃРёСЃС‚РµРјРѕР№
 		work_with_files file;
 
 		str path_to_input_file;
@@ -100,9 +100,9 @@ void main(){
 
 		int error = 0;
 
-		// Выбор мода - шифрование или дешифрование
+		// Р’С‹Р±РѕСЂ РјРѕРґР° - С€РёС„СЂРѕРІР°РЅРёРµ РёР»Рё РґРµС€РёС„СЂРѕРІР°РЅРёРµ
 		char current_mode;
-		// Выбор источника - консоль или файл
+		// Р’С‹Р±РѕСЂ РёСЃС‚РѕС‡РЅРёРєР° - РєРѕРЅСЃРѕР»СЊ РёР»Рё С„Р°Р№Р»
 		char current_source;
 		ui.input_menu(current_mode, current_source);
 

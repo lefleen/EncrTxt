@@ -95,7 +95,7 @@ private:
 	void change_format_row_pixels(pix_vec& new_pixels, const pix_vec& pixels, int& num_last_pixel, const int index, unsigned char& sum_r, unsigned char& sum_g, unsigned char& sum_b);
 	void change_format_column_pixels(pix_vec& new_pixels, const pix_vec& pixels, int& num_last_el_row, const int index, unsigned char& sum_r, unsigned char& sum_g, unsigned char& sum_b);
 public:
-	// Œ“À¿ƒŒ◊Õ¿ﬂ ‘”Õ ÷»ﬂ
+	// –û–¢–õ–ê–î–û–ß–ù–ê–Ø –§–£–ù–ö–¶–ò–Ø
 	void show(const pix_vec& pixels);	
 	//
 	void change_format_all_pixels(pix_vec& pixels);
