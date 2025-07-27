@@ -39,7 +39,7 @@ void main_get_pixels(work_with_files& file, pix_vec& pixels)
 
 	// ОЛАДОЧНАЯ ИНФОРМАЦИЯ
 	std::cout << "show 1\n";
-	show(pixels);
+	//show(pixels);
 	//
 	
 	preprocess.delete_unnecessary_elements(pixels);

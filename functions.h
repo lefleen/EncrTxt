@@ -70,13 +70,8 @@ class change_format_pixels
 {
 private:
 	bool is_row(const Pixel& pixel, const Pixel& next_pixel);
-	bool is_row_same_pixels(const Pixel& pixel, const Pixel& next_pixel);
-	bool is_column(const Pixel& pixel, const Pixel& next_pixel);
-	void new_sum_pixels();
-	int get_num_last_element_column();
-	void change_format_row_different_pixels(pix_vec& pixels, size_t num_current_pixel, size_t num_next_pixel, size_t& external_index);
-	void change_format_row_same_pixels(pix_vec& pixels, size_t num_current_pixel, size_t num_next_pixel, size_t& external_index);
-	void change_format_column_pixels();
+	void change_format_row_pixels(pix_vec& pixels, size_t num_current_pixel, size_t num_next_pixel, size_t& external_index);
+	void change_format_column_pixels(pix_vec& pixels, size_t num_current_pixel, size_t num_next_pixel, size_t& external_index);
 public:
 	void change_format_all_pixels(pix_vec& pixels);
 };

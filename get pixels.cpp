@@ -33,25 +33,20 @@ int search_pixels::get_pixels(const uc_vec& IDAT, const uc_vec& IHDR, pix_vec& p
 	error = extract_dimension_from_ihdr(num_rows, IHDR, true);
 	error = extract_dimension_from_ihdr(num_columns, IHDR, false);
 	// Индекс для IDAT - чанка
-	int index = 0;
+	int index = 1;
 	// Проверка на размер изображения
 	if (num_rows <= 0 || num_columns <= 0)
 	{
 		std::cout << "Num rows or(and) columns is empty, or(and) null. Try again in next time." << std::endl << std::endl;
 		return -1;
 	}
-	for (int row = 0; row < num_rows; row++)
+	for (int row = 0; row < num_rows; ++row, ++index)
 	{
-		// Пропуск фильтра строки пикселей (первый байт строки)
-		index++;
-		for (int column = 0; column < num_columns; column++)
+		for (int column = 0; column < num_columns; ++column, index += bytes_per_pixel)
 		{
 			Pixel pixel = { column, row, IDAT[index], IDAT[index + 1], IDAT[index + 2] };
 			pixels.push_back(pixel);
-			// Следующий пиксель
-			index += bytes_per_pixel;
-		}	
-		
+		}
 	}
 	// Проверка на наличия пикселей
 	if (pixels.empty())
