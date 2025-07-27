@@ -21,7 +21,7 @@ bool change_format_pixels::is_column(const Pixel& pixel, const Pixel& next_pixel
 // Получение номера элемената конца пикселей
 int change_format_pixels::get_num_last_element_column()
 {
-
+	return 0;
 }
 
 // Изменение сумм пикселей

@@ -1,6 +1,7 @@
 .vs/
 Release/
 EncryptorTxt/
+out/
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
