@@ -21,5 +21,12 @@ add_executable(${PROJECT_NAME}
     "functions.h"
 )
 
+if(MSVC)
+    # Способ 1: Через свойства файла
+    set_property(SOURCE "main.cpp" PROPERTY VS_SETTINGS 
+        "{ \"SelectedNode\": true }"
+    )
+endif()
+
 target_include_directories(${PROJECT_NAME} PRIVATE ${ZLIB_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${ZLIB_LIBRARY})
