@@ -1,0 +1,7 @@
+.vs/
+Release/
+EncryptorTxt/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
