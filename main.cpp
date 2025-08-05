@@ -4,10 +4,11 @@ void show(const pix_vec& pixels)
 {
 	for (int i = 0; i < pixels.size(); i++)
 	{
-		//if (!(pixels[i].r == 0 && pixels[i].g == 0 && pixels[i].b == 0))
+		if (pixels[i].r == 0 && pixels[i].g == 0 && pixels[i].b == 0)
 		{
-			std::cout << pixels[i].row << "\t" << pixels[i].column << "\t" << (int)pixels[i].r << "\t" << (int)pixels[i].g << "\t" << (int)pixels[i].b << std::endl;
+			continue;
 		}
+		std::cout << pixels[i].row << "\t" << pixels[i].column << "\t" << (int)pixels[i].r << "\t" << (int)pixels[i].g << "\t" << (int)pixels[i].b << std::endl;
 	}
 	std::cout << std::endl;
 }
@@ -38,21 +39,21 @@ void main_get_pixels(work_with_files& file, pix_vec& pixels)
 	}
 
 	// ОЛАДОЧНАЯ ИНФОРМАЦИЯ
-	std::cout << "show 1\n";
+	//std::cout << "show 1\n";
 	//show(pixels);
 	//
 	
-	preprocess.delete_unnecessary_elements(pixels);
+	//preprocess.delete_unnecessary_elements(pixels);
 
     // ОТЛАДОЧНАЯ ИНФА
-	std::cout << "show 2\n";
+	std::cout << "show 1\n";
 	show(pixels);
 	//
 
 	correct_format_pixels.change_format_all_pixels(pixels);
 
 	// ОТЛАДОЧНАЯ ИНФА
-	std::cout << "show 3\n";
+	std::cout << "show 2\n";
 	show(pixels);
 	//
 }

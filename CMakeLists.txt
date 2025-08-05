@@ -17,16 +17,8 @@ add_executable(${PROJECT_NAME}
     "user interface.cpp"
     "work with chunks.cpp"
     "work with files.cpp"
-    "classes.h"
-    "functions.h"
+    "png.cpp"
 )
-
-if(MSVC)
-    # Способ 1: Через свойства файла
-    set_property(SOURCE "main.cpp" PROPERTY VS_SETTINGS 
-        "{ \"SelectedNode\": true }"
-    )
-endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${ZLIB_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${ZLIB_LIBRARY})
