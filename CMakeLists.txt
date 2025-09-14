@@ -12,8 +12,6 @@ add_executable(${PROJECT_NAME}
     "change format pixels.cpp"
     "cryptograthy.cpp"
     "get pixels.cpp"
-    "postprocessing_pixels.cpp"
-    "preprocessing_pixels.cpp"
     "user interface.cpp"
     "work with chunks.cpp"
     "work with files.cpp"

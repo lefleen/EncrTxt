@@ -9,14 +9,19 @@
 #include "zlib.h"
 
 using str = std::string;
+using uc = unsigned char;
+
 using pix_vec = std::vector<Pixel>;
 using uc_vec = std::vector<unsigned char>;
+using ul_vec = std::vector<unsigned long>;
 
 class png 
 {
-public:
+protected:
 	static unsigned long num_rows;
+	static unsigned long num_pixels;
 	static unsigned long num_columns;
+	static ul_vec row_filter;
 };
 
 class user_interface : public png
@@ -49,7 +54,8 @@ class work_with_chunks : public png
 	int from_file_to_chunk(uc_vec& chunk, const uc_vec& code_file, int position_chunk_in_flle);
 	long get_length_chunk(int chunk_offset_size, const uc_vec& code_chunk);
 	uc_vec uncompress_chunk(const uc_vec& compress_chunk);
-	uc_vec search_chunk(const uc_vec& code_file, const str& name_chunk);
+	uc_vec search_chunk(const uc_vec& code_file, const str& name_chunk, bool& next_IDAT_is_exist, int& chunk);
+	bool get_IDAT(uc_vec& IDAT, const uc_vec& code_file);
 public:
 	int get(uc_vec& IDAT, uc_vec& IHDR, const uc_vec& code_file);
 };
@@ -74,19 +80,10 @@ public:
 class change_format_pixels : public png
 {
 private:
-	bool is_row(const Pixel& pixel, const Pixel& next_pixel);
-	bool is_end_or_start_column(const Pixel& pixel);
-	void change_format_row_pixels(pix_vec& pixels, size_t num_current_pixel, size_t num_next_pixel, size_t& external_index);
-	void change_format_column_pixels(pix_vec& pixels, size_t num_current_pixel, size_t num_next_pixel, size_t& external_index);
+	void change_format_up_filter(pix_vec& pixels, size_t index_row);
+	void change_format_sub_filter(pix_vec& pixels, size_t num_current_pixel);
+	void change_format_average_filter(pix_vec& pixels, size_t num_current_pixel);
+	void get_average(const pix_vec& pixels, size_t current_pixel, uc& average_r, uc& average_g, uc& average_b);
 public:
 	void change_format_all_pixels(pix_vec& pixels);
-};
-
-class preprocessing_pixels : public png
-{
-private:
-	bool is_white_color(const Pixel& pixel);
-	bool is_null_pixel(const Pixel& pixel);
-public:
-	void delete_unnecessary_elements(pix_vec& pixels);
 };

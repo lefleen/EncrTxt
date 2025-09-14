@@ -4,7 +4,7 @@ void show(const pix_vec& pixels)
 {
 	for (int i = 0; i < pixels.size(); i++)
 	{
-		if (pixels[i].r == 0 && pixels[i].g == 0 && pixels[i].b == 0)
+		if ((pixels[i].r == 0 && pixels[i].g == 0 && pixels[i].b == 0) || (pixels[i].r == 255 && pixels[i].g == 255 && pixels[i].b == 255))
 		{
 			continue;
 		}
@@ -17,7 +17,6 @@ void main_get_pixels(work_with_files& file, pix_vec& pixels)
 {
 	work_with_chunks chunks;
 	change_format_pixels correct_format_pixels;
-	preprocessing_pixels preprocess;
 
 	uc_vec code_file;
 	uc_vec IDAT;
