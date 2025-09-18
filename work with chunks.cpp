@@ -120,12 +120,10 @@ uc_vec work_with_chunks::search_chunk(const uc_vec& code_file, const str& name_c
             continue;
         }
         //Проверка чанка 
-        if (is_true_chunk(index, code_file, name_chunk) /* && position_chunk_in_file == -1*/)
+        if (is_true_chunk(index, code_file, name_chunk))
         {
             // Позиция чанка в файле
             position_chunk_in_file = index - 4;
-
-            if(name_chunk != "IHDR") std::cout << code_file[position_chunk_in_file + 4] << code_file[position_chunk_in_file + 5] << " " << position_chunk_in_file << std::endl;
 
             ++index;
 
@@ -140,6 +138,7 @@ uc_vec work_with_chunks::search_chunk(const uc_vec& code_file, const str& name_c
     // Перенос чанка из файла в отдельную переменную
     int error = from_file_to_chunk(chunk, code_file, position_chunk_in_file);
 
+    // Проверка на наличие ошибки и очищение чанка в случае её возникновения
     if(error == -1)
     {
         chunk.clear();
@@ -147,11 +146,16 @@ uc_vec work_with_chunks::search_chunk(const uc_vec& code_file, const str& name_c
     return chunk;
 }
 
+// Полчение чанка IDAT
 bool work_with_chunks::get_IDAT(uc_vec& IDAT, const uc_vec& code_file)
 {
+    // Проверка на существование чанка
     bool next_IDAT_is_exist = true;
+
+    // Объявление индекса
     int index = 0;
 
+    // Пока находится чанк IDAT, он будет сохраняться
     while (next_IDAT_is_exist)
     {
         uc_vec one_block_IDAT = std::move(search_chunk(code_file, "IDAT", next_IDAT_is_exist, index));
@@ -161,14 +165,18 @@ bool work_with_chunks::get_IDAT(uc_vec& IDAT, const uc_vec& code_file)
 
 int work_with_chunks::get(uc_vec& IDAT, uc_vec& IHDR, const uc_vec& code_file)
 {
+    // Получение чанка IDAT
     get_IDAT(IDAT, code_file);
 
+    // flag - переменная-затычка для IHDR, как и index
     bool flag = false;
     int index = 0;
 
+    // move - семантика
     IHDR = std::move(search_chunk(code_file, "IHDR", flag, index));
     IDAT = std::move(uncompress_chunk(IDAT));
 
+    // Если ошибка и чанки пусты, возврат кода ошибки 
     if (IDAT.empty() || IHDR.empty())
     {
         return -1;

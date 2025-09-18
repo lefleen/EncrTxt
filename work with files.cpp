@@ -141,7 +141,7 @@ void work_with_files::open_file_dialog(str& path_to_file)
 	std::cout << std::endl << std::endl;
 }
 
-void work_with_files::png_read(uc_vec &code_file)
+void work_with_files::get(uc_vec &code_file)
 {
 	str path_to_file; //= "C:\\Users\\1\\Downloads\\browser.png";
 

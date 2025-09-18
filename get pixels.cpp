@@ -21,7 +21,7 @@ int search_pixels::extract_dimension_from_ihdr(unsigned long& dimension, const u
 }
 
 // Поиск не нулевых пикселей
-int search_pixels::get_pixels(const uc_vec& IDAT, const uc_vec& IHDR, pix_vec& pixels)
+int search_pixels::get(const uc_vec& IDAT, const uc_vec& IHDR, pix_vec& pixels)
 {
 	int error;
 
