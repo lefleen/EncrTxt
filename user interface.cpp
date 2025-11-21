@@ -1,7 +1,7 @@
 #include "functions.h"
 
 // Проверка границ выбора
-bool user_interface::is_coorect_input(const char value, const char min_val_arg, const char max_val_arg)
+/*bool user_interface::is_coorect_input(const char value, const char min_val_arg, const char max_val_arg)
 {
 	return (value >= min_val_arg && value <= max_val_arg);
 }
@@ -59,4 +59,4 @@ void user_interface::input_menu(char &current_mode, char &current_source)
 	current_mode = func_choose_mode();
 	current_source = func_choose_source();
 	std::cout << std::endl;
-}
+}*/

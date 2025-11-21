@@ -25,6 +25,8 @@ int search_pixels::get(const uc_vec& IDAT, const uc_vec& IHDR, pix_vec& pixels)
 {
 	int error;
 
+	size_t bytes_per_pixel = 4;
+
 	// Нахождение строк и столбцов
 	error = extract_dimension_from_ihdr(num_rows, IHDR, true);
 	error = extract_dimension_from_ihdr(num_columns, IHDR, false);
@@ -46,8 +48,6 @@ int search_pixels::get(const uc_vec& IDAT, const uc_vec& IHDR, pix_vec& pixels)
 	{
 		row_filter.push_back(IDAT[index - 1]);
 
-		size_t bytes_per_pixel = 4;
-
 		if (row_filter.back() == 0) bytes_per_pixel = 3;
 
 		for (int column = 0; column < num_columns; ++column, index += bytes_per_pixel)
@@ -56,7 +56,6 @@ int search_pixels::get(const uc_vec& IDAT, const uc_vec& IHDR, pix_vec& pixels)
 			pixels.push_back(pixel);
 		}
 	}
-	system("pause");
 
 	// Проверка на наличия пикселей
 	if (pixels.empty())
