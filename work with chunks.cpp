@@ -44,10 +44,10 @@ long work_with_chunks::get_length_chunk(int chunk_offset_size, const uc_vec& cod
     // Длина размера (количество байт в размере)
     const int bytes_size = 4;
 
-    // Полный размера чанка в формате Big Endian
-    size_t size_chunk;
+    // Полный размера чанка в формате Little Endian
+    size_t size_chunk = 0;
 
-    // Сложение с изменением порядка байт в Little Endian
+    // Сложение с изменением порядка байт в Big Endian
     for (int i = 0; i < bytes_size; ++i)
     {
         size_chunk = (size_chunk << 8) | code_chunk[chunk_offset_size + i];
@@ -147,7 +147,7 @@ uc_vec work_with_chunks::search_chunk(const uc_vec& code_file, const str& name_c
 }
 
 // Полчение чанка IDAT
-bool work_with_chunks::get_IDAT(uc_vec& IDAT, const uc_vec& code_file)
+int work_with_chunks::get_IDAT(uc_vec& IDAT, const uc_vec& code_file)
 {
     // Проверка на существование чанка
     bool next_IDAT_is_exist = true;
@@ -159,6 +159,12 @@ bool work_with_chunks::get_IDAT(uc_vec& IDAT, const uc_vec& code_file)
     while (next_IDAT_is_exist)
     {
         uc_vec one_block_IDAT = std::move(search_chunk(code_file, "IDAT", next_IDAT_is_exist, index));
+
+        if (one_block_IDAT.empty() && IDAT.empty())
+        {
+            return -1;
+        }
+
         IDAT.insert(IDAT.end(), one_block_IDAT.begin(), one_block_IDAT.end());
     }
 }
@@ -175,12 +181,14 @@ int work_with_chunks::get(uc_vec& IDAT, uc_vec& IHDR, const uc_vec& code_file)
     // move - семантика
     IHDR = std::move(search_chunk(code_file, "IHDR", flag, index));
     IDAT = std::move(uncompress_chunk(IDAT));
+    //PLTE = std::move(search_chunk(code_file, "PLTE", flag, index));
 
     // Если ошибка и чанки пусты, возврат кода ошибки 
     if (IDAT.empty() || IHDR.empty())
     {
         return -1;
     }
+
 
     return 0;
 }

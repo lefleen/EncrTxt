@@ -6,3 +6,4 @@ out/
 *.vcxproj.filters
 *.vcxproj.user
 *.sln
+*.png

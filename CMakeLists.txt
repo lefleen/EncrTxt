@@ -15,7 +15,10 @@ add_executable(${PROJECT_NAME}
     "user interface.cpp"
     "work with chunks.cpp"
     "work with files.cpp"
+    "create png.cpp"
     "png.cpp"
+    "handler read.cpp"
+    "handler write.cpp"
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${ZLIB_INCLUDE_DIRS})

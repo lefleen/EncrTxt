@@ -1,10 +1,10 @@
 #include "functions.h"
 
+// Для фильтра average (предыдущий и верхний складываются, делятся на два и прибавляется текущйи пиксель)
 void change_format_pixels::get_average(const pix_vec& pixels, size_t current_pixel, uc& average_r, uc& average_g, uc& average_b)
 {
 	size_t current_up_pixel = current_pixel - num_columns;
 	size_t previous_pixel = current_pixel - 1;
-
 
 	if (current_pixel >= 0)
 	{
@@ -156,7 +156,7 @@ void change_format_pixels::change_format_average_filter(pix_vec& pixels, size_t 
 
 void change_format_pixels::change_format_paeth_filter(pix_vec& pixels, size_t index_row)
 {
-	// Работа с фильтром 3 , paeth для всей текущей строки
+	// Работа с фильтром 4 , paeth для всей текущей строки
 	for (size_t index = 0; index < num_columns; ++index)
 	{
 		// Координаты текущего пикселя

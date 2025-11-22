@@ -1,4 +1,4 @@
-#include "functions.h"
+/*#include "functions.h"
 #include "classes.h"
 
 void cryptograthy::show_plain_text(const str& plain_text)
@@ -82,3 +82,4 @@ int cryptograthy::decryption_text(const str& text, const pix_vec& pixels, str& p
 	show_plain_text(plain_text);
 	return 0;
 }
+*/
